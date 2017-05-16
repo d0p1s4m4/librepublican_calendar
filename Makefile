@@ -9,14 +9,14 @@ else
 TARGET		= librepublican_calendar.so
 endif
 
-BASEFLAGS	= -Wall -Wextra -Werror -Iinclude
+BASEFLAGS	= -Wall -Wextra -Werror -Iinclude -std=c99
 ifneq ($(OS),Windows_NT)
 BASEFLAGS += -fPIC
 endif
 CFLAGS		+= $(BASEFLAGS) -O2
 LDFLAGS		+= -shared
 COVFLAGS	= $(BASEFLAGS) --coverage -O0 -g
-TESTFLAGS	= -lcmocka
+TESTFLAGS	= 
 
 SRC_DIR		= src
 TEST_DIR	= test

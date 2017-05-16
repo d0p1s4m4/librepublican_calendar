@@ -12,17 +12,17 @@ environment:
     WINDBG_DIR: '%ProgramFiles(x86)%\Windows Kits\8.1\Debuggers\x86'
 
 install:
-- if not exist "%MINGW_ARCHIVE%" appveyor DownloadFile "%MINGW_URL%" -FileName "%MINGW_ARCHIVE%"
-- 7z x -y "%MINGW_ARCHIVE%" > nul
-- ps: Get-Command sh.exe -All | Remove-Item
+  - if not exist "%MINGW_ARCHIVE%" appveyor DownloadFile "%MINGW_URL%" -FileName "%MINGW_ARCHIVE%"
+  - 7z x -y "%MINGW_ARCHIVE%" > nul
+  - ps: Get-Command sh.exe -All | Remove-Item
 
 
 before_build:
-- set Path=%CD%\%MINGW_DIR%\bin;%Path%
-- set CC=gcc
-- gcc --version
-- mingw32-make --version
-- ps: (Get-Item "${Env:WINDBG_DIR}\dbghelp.dll").VersionInfo
+  - set Path=%CD%\%MINGW_DIR%\bin;%Path%
+  - set CC=gcc
+  - gcc --version
+  - mingw32-make --version
 
 build_script:
-- mingw32-make
+  - mingw32-make
+  - mingw32-make test

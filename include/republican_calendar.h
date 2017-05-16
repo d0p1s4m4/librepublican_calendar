@@ -10,7 +10,7 @@ struct rtm {
 	int	rtm_mday;
 	int	rtm_mon;
 	int	rtm_year;
-	int	rtm_wday;
+	int	rtm_dday;
 	int	rtm_yday;
 	int	rtm_isdst;
 };

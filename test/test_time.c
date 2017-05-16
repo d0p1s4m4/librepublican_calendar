@@ -1,36 +1,31 @@
 #define _XOPEN_SOURCE
 #include <time.h>
 #include <republican_calendar.h>
-#include <stdarg.h>
-#include <stddef.h>
-#include <setjmp.h>
-#include <cmocka.h>
+#include <assert.h>
 
 #include "../src/time.c"
 
-static void test_republican_localtime(void **state)
+static void test_republican_localtime(void)
 {
 	struct tm	tm;
 	struct rtm	*rtm;
 	time_t		base;
 
-	(void)state;
 	/* init */
-	strptime("2017-5-15", "%Y-%m-%d", &tm);
+	strptime("2017-5-15 18:31:01", "%Y-%m-%d  %H:%M:%S", &tm);
 	base = mktime(&tm);
 	/* run */
 	rtm = republican_localtime(&base);
 	/* check */
-	assert_int_equal(rtm->rtm_year, 225);
-	assert_int_equal(rtm->rtm_yday, 236);
-	assert_int_equal(rtm->rtm_mon, 8);
+	assert(rtm->rtm_year == 225);
+	assert(rtm->rtm_yday == 236);
+	assert(rtm->rtm_mon == 8);
+	assert(rtm->rtm_mday == 27);
+	assert(rtm->rtm_dday == 7);
 }
 
 int	main(void)
 {
-	const struct CMUnitTest tests[] = {
-		cmocka_unit_test(test_republican_localtime)
-	};
-
-	return (cmocka_run_group_tests(tests, NULL, NULL));
+	test_republican_localtime();
+	return (0);
 }

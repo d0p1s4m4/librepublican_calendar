@@ -7,7 +7,7 @@ republican_time_t	*republican_localtime(time_t const *timer)
 	return (republican_localtime_r(timer, &rtm));
 }
 
-static inline int __republican_get_correct_year(struct tm const *__restrict current)
+static /*inline*/ int __republican_get_correct_year(struct tm const *__restrict current)
 {
 	if (current->tm_mon < 8 ||
 			(current->tm_mday < 22 && current->tm_mon == 8))
@@ -48,5 +48,7 @@ republican_time_t	*republican_localtime_r(time_t const *__restrict timer,
 	rtp->rtm_year = (__republican_get_correct_year(tminfo) + 1900) -  1792;
 	__republican_get_day_of_year(tminfo, rtp);
 	rtp->rtm_mon = (rtp->rtm_yday / 30) + 1;
+	rtp->rtm_mday = (rtp->rtm_yday) - ((rtp->rtm_mon -1) * 30) + 1;
+	rtp->rtm_dday = rtp->rtm_mday % 10;
 	return (rtp);
 }
