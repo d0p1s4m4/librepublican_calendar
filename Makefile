@@ -6,8 +6,8 @@ COV		= gcovr
 TARGET		= librepublican_calendar.so
 
 BASEFLAGS	= -Wall -Wextra -Werror -fPIC -Iinclude
-CFLAGS		= $(BASEFLAGS) -O2
-LDFLAGS		= -shared
+CFLAGS		+= $(BASEFLAGS) -O2
+LDFLAGS		+= -shared
 COVFLAGS	= $(BASEFLAGS) --coverage -O0 -g
 TESTFLAGS	= -lcmocka
 
@@ -21,6 +21,9 @@ all: $(TARGET)
 
 $(TARGET): $(OBJS)
 	$(CC) -o $@ $^ $(LDFLAGS)
+
+%.o: %.c
+	$(CC) -o $@ -c $< $(CFLAGS)
 
 test: $(TEST_DIR)/test_time.c
 	$(CC) $(COVFLAGS) $(TESTFLAGS) -o $(TEST_DIR)/test_time.o $^

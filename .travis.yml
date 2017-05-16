@@ -1,11 +1,38 @@
 language: c
+dist: trusty
 compiler:
-  - clang
   - gcc
+os:
+  - linux
+
+python:
+  - 2.7.10
+
+addons:
+  apt:
+    sources:
+      - ubuntu-toolchain-r-test
+    packages:
+      - gcc-multilib
+      - gcc
+      - pkg-config
+      - make
+      - cmake
+      - libxml2-dev
+      - libxml2
+      - python
+      - python-dev
+      - python-pip
+      - python-setuptools
+
 before_install:
   - sudo apt-get -qq update
-  - sudo apt-get install -y libcmocka-dev 
   - pip install --user cpp-coveralls
+  - ( wget -q https://cmocka.org/files/1.0/cmocka-1.0.1.tar.xz &&
+    tar -xJvf cmocka-1.0.1.tar.xz &&
+    mkdir -p cmocka-1.0.1/build && cd cmocka-1.0.1/build &&
+    cmake -DCMAKE_INSTALL_PREFIX:PATH=/usr .. && make -j2 && sudo make install; )
+
 script:
   - make test
 after_success:
