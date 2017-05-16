@@ -3,9 +3,16 @@ RM		= rm -rf
 MV		= mv
 COV		= gcovr
 
+ifeq ($(OS),Windows_NT)
+TARGET		= librepublican_calendar.dll
+else
 TARGET		= librepublican_calendar.so
+endif
 
-BASEFLAGS	= -Wall -Wextra -Werror -fPIC -Iinclude
+BASEFLAGS	= -Wall -Wextra -Werror -Iinclude
+ifneq ($(OS),Windows_NT)
+BASEFLAGS += -fPIC
+endif
 CFLAGS		+= $(BASEFLAGS) -O2
 LDFLAGS		+= -shared
 COVFLAGS	= $(BASEFLAGS) --coverage -O0 -g
