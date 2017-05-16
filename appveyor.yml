@@ -25,4 +25,3 @@ before_build:
 
 build_script:
   - mingw32-make
-  - mingw32-make test

@@ -1,3 +1,11 @@
+/*
+ * ----------------------------------------------------------------------------
+ * "THE BEER-WARE LICENSE" (Revision 42):
+ * d0p1 wrote this file. As long as you retain this notice you
+ * can do whatever you want with this stuff. If we meet some day, and you think
+ * this stuff is worth it, you can buy me a beer in return.
+ * ----------------------------------------------------------------------------
+ */
 #ifndef REPUBLICAN_CALENDAR_H_
 # define REPUBLICAN_CALENDAR_H_ 1
 
@@ -22,8 +30,7 @@ typedef struct rtm republican_time_t;
  */
 
 republican_time_t	*republican_localtime(time_t const *timer);
-republican_time_t	*republican_localtime_r(time_t const *__restrict timer,
+republican_time_t	*republican_localtime_r(time_t const *timer,
 						republican_time_t *rtp);
-republican_time_t	*to_republican(struct tm const *__restrict info);
 
 #endif /* !REPUBLICAN_CALENDAR_H_ */

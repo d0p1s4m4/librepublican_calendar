@@ -16,7 +16,7 @@ endif
 CFLAGS		+= $(BASEFLAGS) -O2
 LDFLAGS		+= -shared
 COVFLAGS	= $(BASEFLAGS) --coverage -O0 -g
-TESTFLAGS	= 
+TESTFLAGS	=
 
 SRC_DIR		= src
 TEST_DIR	= test
