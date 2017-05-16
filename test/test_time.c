@@ -22,6 +22,8 @@ static void test_republican_localtime(void **state)
 	rtm = republican_localtime(&base);
 	/* check */
 	assert_int_equal(rtm->rtm_year, 225);
+	assert_int_equal(rtm->rtm_yday, 236);
+	assert_int_equal(rtm->rtm_mon, 8);
 }
 
 int	main(void)
