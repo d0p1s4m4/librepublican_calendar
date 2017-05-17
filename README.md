@@ -13,9 +13,11 @@
 int main(void)
 {
   struct rtm  rtm;
+  time_t t;
 
-  republican_localtime_r(NULL, &rtm);
-  printf("Nous sommes le %d/%d de l'An %d", rtm.rtm_mday, rtm.rtm_mon, rtm.rtm_year);
+  time(&t);
+  republican_localtime_r(&t, &rtm);
+  printf("Nous sommes le %d/%d de l'An %d\n", rtm.rtm_mday, rtm.rtm_mon, rtm.rtm_year);
   return (0);
 }
 ```
