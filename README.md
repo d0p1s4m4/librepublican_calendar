@@ -17,7 +17,7 @@ int main(void)
 
   time(&t);
   republican_localtime_r(&t, &rtm);
-  printf("Nous sommes le %d/%d de l'An %d\n", rtm.rtm_mday, rtm.rtm_mon, rtm.rtm_year);
+  printf("Current local time and date: %s", republican_asctime(&rtm));
   return (0);
 }
 ```
