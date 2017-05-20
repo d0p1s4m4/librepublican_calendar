@@ -26,12 +26,17 @@ struct rtm {
 typedef struct rtm republican_time_t;
 
 /*
- * time.c
+ * localtime.c
  */
 
 republican_time_t	*republican_localtime(time_t const *timer);
 republican_time_t	*republican_localtime_r(time_t const *timer,
 						republican_time_t *rtp);
+
+/*
+ * asctime.c
+ */
+
 char			*republican_asctime(republican_time_t const *rtm);
 
 #endif /* !REPUBLICAN_CALENDAR_H_ */

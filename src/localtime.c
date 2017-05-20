@@ -6,18 +6,7 @@
  * this stuff is worth it, you can buy me a beer in return.
  * ----------------------------------------------------------------------------
  */
-#include <stdio.h>
 #include <republican_calendar.h>
-
-static char const __republican_dday_name[][8] = {
-	"Primidi", "Duodi", "Tridi", "Quartidi", "Sextidi", "Octidi", "Nonidi",
-	"Décadi"
-};
-
-static char const __republican_mon_name[][12] = {
-	"Vendémiaire", "Brumaire", "Frimaire", "Nivôse", "Pluviôse", "Ventôse",
-	"Germinal", "Floréal", "Prairial", "Messidor", "Thermidor", "Fructidor"
-};
 
 static republican_time_t	rtm;
 
@@ -70,17 +59,4 @@ republican_time_t	*republican_localtime_r(time_t const *timer,
 	rtp->rtm_mday = ((rtp->rtm_yday -1) - (rtp->rtm_mon * 30)) + 1;
 	rtp->rtm_dday = (rtp->rtm_mday -1) % 10;
 	return (rtp);
-}
-
-char	*republican_asctime(republican_time_t const *rtm)
-{
-	static char	result[26];
-
-	sprintf(result, "%.3s %.3s%3d %.2d:%.2d:%.2d %d\n",
-		__republican_dday_name[rtm->rtm_dday],
-		__republican_mon_name[rtm->rtm_mon],
-		rtm->rtm_mday,
-		rtm->rtm_hour, rtm->rtm_min, rtm->rtm_sec,
-		rtm->rtm_year);
-	return (result);
 }

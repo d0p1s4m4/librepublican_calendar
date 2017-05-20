@@ -21,9 +21,10 @@ TESTFLAGS	=
 SRC_DIR		= src
 TEST_DIR	= test
 
-SRCS		= time.c \
+SRCS		= localtime.c \
 		  roman.c \
-		  utils.c
+		  utils.c \
+		  asctime.c
 OBJS		= $(addprefix $(SRC_DIR)/, $(SRCS:.c=.o))
 
 all: $(TARGET)
@@ -34,7 +35,7 @@ $(TARGET): $(OBJS)
 %.o: %.c
 	$(CC) -o $@ -c $< $(CFLAGS)
 
-test_time: $(TEST_DIR)/test_time.c
+test_localtime: $(TEST_DIR)/test_localtime.c
 	$(CC) $(COVFLAGS) $(TESTFLAGS) -o $(TEST_DIR)/$@.o $^
 	./$(TEST_DIR)/$@.o
 
@@ -42,7 +43,7 @@ test_roman: $(TEST_DIR)/test_roman.c $(SRC_DIR)/utils.c
 	$(CC) $(COVFLAGS) $(TESTFLAGS) -o $(TEST_DIR)/$@.o $^
 	./$(TEST_DIR)/$@.o
 
-test: test_time test_roman
+test: test_localtime test_roman
 	$(MV) *.g* $(TEST_DIR)
 
 coverage: test

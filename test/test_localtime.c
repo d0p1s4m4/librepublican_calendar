@@ -11,7 +11,7 @@
 #include <republican_calendar.h>
 #include <assert.h>
 
-#include "../src/time.c"
+#include "../src/localtime.c"
 
 static void test_republican_localtime(void)
 {
